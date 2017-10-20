@@ -54,11 +54,22 @@ exports.signup = (req, res, next) => {
         newUser.save(err => {
             if(err) return next(err);
 
-            res.json({ token: tokenForUser(newUser)});
+            const sendObj = {
+                token: tokenForUser(newUser),
+                username, color
+            }
+
+            res.json(sendObj);
         });
     });
 }
 
 exports.signin = (req, res, next) => {
-    res.send({token: tokenForUser(req.user)});
+    res.send(
+        {
+            token: tokenForUser(req.user),
+            username: req.user.username,
+            color: req.user.color
+        }
+    );
 } 

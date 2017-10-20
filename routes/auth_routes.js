@@ -8,14 +8,14 @@ const requireSignin = passport.authenticate('local', { session: false });
 
 module.exports = app => {
 
-    app.get('/', (req, res) => {
-        res.send('<h1>The app worked!</h1>');
-    });
+    app.post('/auth/signin', requireSignin, Authentication.signin);
+    app.post('/auth/signup', Authentication.signup);
+    app.get('/auth/get-user', requireAuth, (req, res) => {
+        const user = {
+            username: req.user.username,
+            color: req.user.color
+        }
 
-    app.post('/signin', requireSignin, Authentication.signin);
-    app.post('/signup', Authentication.signup);
-    app.get('/chat-lobby', requireAuth, (req, res) => {
-        console.log('/chat-lobby', req.user);
-        res.send({ temp: 'Say something' });
+        res.send(user);
     });
 }
