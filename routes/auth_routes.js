@@ -10,8 +10,12 @@ module.exports = app => {
 
     app.post('/auth/signin', requireSignin, Authentication.signin);
     app.post('/auth/signup', Authentication.signup);
-    app.get('/chat-lobby', requireAuth, (req, res) => {
-        console.log('/chat-lobby', req.user);
-        res.send({ temp: 'Say something' });
+    app.get('/auth/get-user', requireAuth, (req, res) => {
+        const user = {
+            username: req.user.username,
+            color: req.user.color
+        }
+
+        res.send(user);
     });
 }

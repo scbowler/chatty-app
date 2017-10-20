@@ -10,6 +10,8 @@ export default (state = DEFAULT_STATE, action) => {
                 username: action.payload.username,
                 color: action.payload.color
             }}
+        case types.SIGNOUT:
+            return { auth: null };
         default:
             return state;
     }
