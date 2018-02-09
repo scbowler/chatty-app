@@ -48,3 +48,17 @@ export function signout(){
         type: types.SIGNOUT
     }
 }
+
+export function getRoomList(){
+    return dispatch => {
+        axios.get(
+            '/api/room-list',
+            { headers: { authorization: localStorage.token }}
+        ).then( resp => {
+                dispatch({
+                    type: types.GET_ROOM_LIST,
+                    payload: resp.data
+                });
+            });
+        }
+}

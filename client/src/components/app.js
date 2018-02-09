@@ -8,6 +8,8 @@ import Home from './home';
 import Signup from './signup';
 import Signin from './signin';
 import Nav from './nav';
+import ChatLobby from './chat_lobby';
+import ChatRoom from './chat_room';
 
 class App extends Component {
 
@@ -24,6 +26,8 @@ class App extends Component {
                 <Route exact path="/" component={Home}/>
                 <Route path="/signup" component={Signup}/>
                 <Route path="/signin" component={Signin}/>
+                <Route path="/chat-lobby" component={ChatLobby}/>
+                <Route path="/chat/:id" component={ChatRoom}/>
             </div>
         )
     }
